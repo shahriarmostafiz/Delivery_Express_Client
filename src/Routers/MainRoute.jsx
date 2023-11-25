@@ -4,6 +4,7 @@ import Mainlayout from '../Layouts/Mainlayout';
 import Home from '../Pages/Home/Home/Home';
 import Register from '../Pages/Register/Register';
 import Login from '../Pages/Login/Login';
+import DashboardLayout from '../Layouts/DashboardLayOut';
 
 const MainRoute = createBrowserRouter([
     {
@@ -20,6 +21,15 @@ const MainRoute = createBrowserRouter([
                 path: "/login",
                 element: <Login></Login>
             }
+        ]
+    }, {
+        path: "dashboard",
+        element: <DashboardLayout />,
+        children: [
+            {
+
+            }
+
         ]
     }
 ])
