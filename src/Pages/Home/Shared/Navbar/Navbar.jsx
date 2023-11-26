@@ -24,7 +24,7 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className=' absolute mt-4'>
+        <div className='my-2'>
 
             <div className='  w-full  md:flex md:justify-between  lg:justify-center'>
                 <div className='md:w-full lg:max-w-[1280px]'>
@@ -85,7 +85,7 @@ const Navbar = () => {
                                 </div> :
                                     <>
                                         {/* <button className='btn-sm btn-success'>Sign in</button> */}
-                                        <Link to={"/register"} className='btn-sm btn-success'>Sign in</Link></>
+                                        <Link to={"/login"} className='btn  btn-sm btn-info text-white'>Sign in</Link></>
                             }
                         </div>
                     </div>

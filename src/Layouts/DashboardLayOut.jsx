@@ -4,7 +4,7 @@ import Dashbar from '../Pages/DashBoard/Shared/Dashbar';
 
 const DashboardLayout = () => {
     return (
-        <div>
+        <div className='flex flex-col md:flex-row'>
             <Dashbar></Dashbar>
             <Outlet></Outlet>
         </div>
