@@ -8,9 +8,9 @@ const AdminRoute = ({ children }) => {
     const [userRole, isRoleLoading] = useRole()
     const isAdmin = userRole.admin
     const { loading } = useAuth()
-    if (loading || isRoleLoading) {
-        return <h1>loading....</h1>
-    }
+    // if (loading || isRoleLoading) {
+    //     return <h1>loading....</h1>
+    // }
     if (isAdmin) {
         return children
     }
