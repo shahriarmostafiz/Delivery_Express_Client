@@ -32,8 +32,6 @@ const Dashbar = () => {
                     }
                     <div className="divider"></div>
                     <li><NavLink to={"/"}><FaHome /> Home </NavLink></li>
-                    <li><NavLink to={"/menu"}><MdOutlineRestaurantMenu /> Menu </NavLink></li>
-                    <li><NavLink to={"/order"}><MdShoppingBag /> Shop </NavLink></li>
                     <li><button onClick={handleLogout} className='btn-ghost'><MdLogout /> Logout  </button></li>
                 </ul>
 

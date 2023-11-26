@@ -7,10 +7,10 @@ import { MdOutlineRateReview, MdOutlineRestaurantMenu, MdShoppingBag } from "rea
 const UserMenus = () => {
     return (
         <>
-            <li><NavLink to={"/dashboard/usersHome"}><FaHome /> Home</NavLink></li>
-            <li><NavLink to={"/dashboard/reservation"}><FaCalendar /> Reservation</NavLink></li>
+            <li><NavLink to={"/dashboard/userProfile"}><FaUsers /> Home</NavLink></li>
+            <li><NavLink to={"/dashboard/addbooking"}><FaCalendar /> Book a Parcel </NavLink></li>
+            <li><NavLink to={"/dashboard/myparcels"}><FaCartPlus /> My Parcels </NavLink></li>
             <li><NavLink to={"/dashboard/paymenthistory"}><FaWallet /> Payment History</NavLink></li>
-            <li><NavLink to={"/dashboard/cart"}><FaCartPlus /> My Cart</NavLink></li>
             <li><NavLink to={"/dashboard/myBookings"}><FaCalendarCheck /> My Booking </NavLink></li>
             <li><NavLink to={"/dashboard/reviews"}><MdOutlineRateReview /> My Reviews </NavLink></li>
         </>

@@ -1,20 +1,23 @@
 /* eslint-disable react/prop-types */
-
+import useRole from '../hooks/useRole';
 import useAuth from '../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
-import useRole from '../hooks/useRole';
 
-const AdminRoute = ({ children }) => {
+const DeliveryRoute = ({ children }) => {
     const [userRole, isRoleLoading] = useRole()
-    const isAdmin = userRole.admin
     const { loading } = useAuth()
-    if (loading || isRoleLoading) {
+    const isDeliveryMan = userRole.deliveryman
+    if (loading, isRoleLoading) {
         return <h1>loading....</h1>
     }
-    if (isAdmin) {
+    if (isDeliveryMan) {
         return children
     }
-    return <Navigate to={"/"}> </Navigate>
+    return (
+
+        <Navigate to={"/"}></Navigate>
+    )
+
 };
 
-export default AdminRoute;
+export default DeliveryRoute;
