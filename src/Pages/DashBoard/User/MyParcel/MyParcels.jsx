@@ -34,6 +34,7 @@ button.(See Bonus Point 2 For The Additional Guideline)
 const MyParcels = () => {
     const { user, loading } = useAuth()
     const [bookings, isLoadingBooking] = useBooking()
+    console.log(bookings);
     if (isLoadingBooking || loading) {
         return <h1>loading parcels ... </h1>
     }
@@ -81,7 +82,7 @@ const MyParcels = () => {
                                 <td>{booking?.aprxDelivery ? booking.aprxDelivery : "N/A"}</td>
                                 <td>{booking.status}</td>
                                 {/* to be added by admin  */}
-                                <td>{booking.deliveryman ? booking.deliverymanId : "To be assigned"}</td>
+                                <td>{booking?.deliverymanId}</td>
                                 <td>
                                     <button onClick={() => {
                                         handleCancel(booking._id)

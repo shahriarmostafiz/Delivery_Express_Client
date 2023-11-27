@@ -32,9 +32,19 @@ const Register = () => {
                             role: data.role,
                             image: data.photo,
                             phone: data.phone.toString(),
-                            bookingCount: 0,
-                            totalPayment: 0
+
                         }
+                        if (data.role === "user") {
+                            userInfo.bookingCount = 0
+                            userInfo.totalPayment = 0
+
+                        }
+                        if (data.role === "deliveryman") {
+                            userInfo.averageReview = 0
+                            userInfo.parcelDelivered = 0
+
+                        }
+                        console.log(userInfo);
                         axiosPublic.post("/users", userInfo)
                             .then(res => {
                                 console.log(res.data);
