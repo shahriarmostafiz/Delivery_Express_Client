@@ -28,10 +28,12 @@ const Register = () => {
                         // insert the user in the database here 
                         const userInfo = {
                             name: data.name,
-                            email: data.email,
+                            email: data.email.toLowerCase(),
                             role: data.role,
                             image: data.photo,
-                            phone: data.phone.toString()
+                            phone: data.phone.toString(),
+                            bookingCount: 0,
+                            totalPayment: 0
                         }
                         axiosPublic.post("/users", userInfo)
                             .then(res => {

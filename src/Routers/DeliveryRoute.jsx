@@ -8,7 +8,7 @@ const DeliveryRoute = ({ children }) => {
     const { loading } = useAuth()
     const isDeliveryMan = userRole.deliveryman
     if (loading, isRoleLoading) {
-        return <h1>loading....</h1>
+        return <h1>loading delivery man ....</h1>
     }
     if (isDeliveryMan) {
         return children

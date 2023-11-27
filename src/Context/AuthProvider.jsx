@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/firebase.config';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 
@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             if (currentUser) {
-                const email = currentUser?.email
+                const email = currentUser.email
                 const userInfo = { email: email }
                 axiosPublic.post("/jwt", userInfo)
                     .then((res) => {
@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
     const update = (name, photo) => {
-        setLoading(true)
+
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo

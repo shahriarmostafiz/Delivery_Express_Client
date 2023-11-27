@@ -3,6 +3,7 @@ import useAuth from '../../../../hooks/useAuth';
 import Sectiontitle from '../../../../Components/Title/Sectiontitle';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useUserInfo from '../../../../hooks/useUserInfo';
 /** form fileds 
  * Name(Auto filled from the logged in user, read-only)x
 ● Email(Auto filled from the logged in user, read-only)x
@@ -21,11 +22,18 @@ is 50Tk, for 2 kg 100Tk, more than 2kg price will be 150Tk)
 
 const AddBooking = () => {
     const [price, setPrice] = useState(0)
-    const [weight, setWeight] = useState(0)
+    // const [weight, setWeight] = useState(0)
     const axiosSecure = useAxiosSecure()
 
 
+
     const { user } = useAuth()
+    const [userInfo, isUserInfoLoading, reloadUserInfo] = useUserInfo()
+    if (isUserInfoLoading) {
+        return <h1>user info is loading for add booking </h1>
+    }
+    console.log("userinfo", userInfo);
+    // userInfo.bookingCount
     const handlePrice = e => {
         const weight = e.target.value
         setPrice(50 * weight)
@@ -68,7 +76,13 @@ const AddBooking = () => {
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    toast.success("Parcel Booked")
+                    axiosSecure.put(`/users/update/${userInfo._id}`, { bookingCount: userInfo?.bookingCount + 1 })
+                        .then(res => {
+                            if (res.data.modifiedCount > 0) {
+                                toast.success("Parcel Booked")
+                                reloadUserInfo()
+                            }
+                        })
                 }
             })
             .catch(err => {

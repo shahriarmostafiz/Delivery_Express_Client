@@ -24,7 +24,7 @@ const Login = () => {
         login(email, password)
             .then(() => {
                 toast.success("Logged in")
-                navigate(location?.state ? location.state : "/")
+                return navigate(location?.state ? location.state : "/")
             })
             .catch(err => {
                 toast.error("email or pass did not match")

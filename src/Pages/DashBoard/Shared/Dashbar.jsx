@@ -19,11 +19,15 @@ const Dashbar = () => {
                 toast.error("Logged Out")
             })
     }
-    const [userRole, isRoleLoading] = useRole()
+    const [userRole] = useRole()
+    // if (isRoleLoading) {
+    //     return <h1>loading ...</h1>
+    // }
     console.log(userRole);
-    const isAdmin = true
-    // const isDeliveryMan = userRole?.deliveryman
-    const isDeliveryMan = false
+    const isAdmin = userRole?.admin
+    // const isAdmin = 
+    const isDeliveryMan = userRole?.deliveryman
+    // const isDeliveryMan = false
 
     const DashbarLinks = <>
 

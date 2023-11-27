@@ -22,7 +22,7 @@ const UserProfile = () => {
     } = useForm()
 
     if (isUserInfoLoading || loading) {
-        return <h1>loading.. </h1>
+        return <h1>loading user info .. </h1>
     }
     const { _id, name, role, image, email, phone } = userInfo
 
@@ -40,7 +40,7 @@ const UserProfile = () => {
             const newImage = {
                 image: res.data.data.display_url
             }
-            const userRes = await axiosSecure.put(`/users/updatePhoto/${_id}`, newImage)
+            const userRes = await axiosSecure.put(`/users/update/${_id}`, newImage)
             if (userRes.data.modifiedCount > 0) {
                 update(name, newImage.image)
                     .then(() => {

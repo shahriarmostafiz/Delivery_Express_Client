@@ -35,7 +35,7 @@ const MyParcels = () => {
     const { user, loading } = useAuth()
     const [bookings, isLoadingBooking] = useBooking()
     if (isLoadingBooking || loading) {
-        return <h1>loading... </h1>
+        return <h1>loading parcels ... </h1>
     }
 
     const handleCancel = (id) => {
