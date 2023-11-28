@@ -5,28 +5,54 @@ import Map, { Marker } from 'react-map-gl';
 import pin from "../../../../../public/pin.png"
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useUserInfo from '../../../../hooks/useUserInfo';
 
 
 
 const Mydeliveries = () => {
     const [bookings, isLoadingBooking, refetchBooking] = useBooking()
+    const [userInfo, isUserInfoLoading, reloadUserInfo] = useUserInfo()
     const axiosSecure = useAxiosSecure()
-    if (isLoadingBooking) {
-        return <h1>loading bookings for deliveryman </h1>
+    if (isLoadingBooking || isUserInfoLoading) {
+        return <h1>loading all data  for deliveryman </h1>
     }
+    console.log(userInfo);
+
     console.log(bookings);
     const handleDelivery = (id, status) => {
-        console.log(id, "will be ", status);
-        const info = { status: status }
-        axiosSecure.put(`/bookings/update/delivery/${id}`, info)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    toast.success("product delivered")
-                }
-            })
 
     }
+    // const handleDelivery = (id, status) => {
+    //     console.log(id, "will be ", status);
+    //     const info = {
+    //         status: status,
+    //     }
+    //     let deliverymanInfo = {}
+    //     if (status === "delivered") {
+    //         deliverymanInfo.parcelDelivered = parseInt(userInfo?.parcelDelivered) + 1;
+    //     }
+    //     axiosSecure.put(`/bookings/update/delivery/${id}`, info)
+    //         .then(res => {
+    //             console.log(res.data);
+    //             if (res.data.modifiedCount > 0) {
+    //                 toast.success(`product ${status}`)
+    //                 refetchBooking()
+    //               if(status==="delivered"){
+    //                   axiosSecure.put(`/users/update/${userInfo._id}`)
+    //                   .then(res=>{
+    //                     if(res.data.modifiedCount>0){
+    //                         toast.success("profile updated")
+    //                         reloadUserInfo()
+    //                     }
+
+    //                   })
+    //               }
+
+
+    //             }
+    //         })
+
+    // }
     return (
         <div className='w-full px-2'>
             <div className="overflow-x-auto w-full">
@@ -89,20 +115,25 @@ const Mydeliveries = () => {
                                     </dialog>
                                 </td>
                                 <td>
-                                    <span className='flex gap-1'>
-                                        <button
-                                            onClick={() => {
-                                                handleDelivery(delivery._id, "cancelled")
-                                            }}
-                                            className='btn btn-error text-white btn-sm '
-                                        >Cancel</button>
-                                        <button
-                                            onClick={() => {
-                                                handleDelivery(delivery._id, "delivered")
-                                            }}
-                                            className='btn btn-success text-white btn-sm '
-                                        >Deliver</button>
-                                    </span>
+                                    {
+                                        delivery.status !== "delivered" ? <span className='flex gap-1'>
+                                            <button
+                                                onClick={() => {
+                                                    handleDelivery(delivery._id, "cancelled")
+                                                }}
+                                                className='btn btn-error text-white btn-sm '
+                                            >Cancel</button>
+                                            <button
+                                                onClick={() => {
+                                                    handleDelivery(delivery._id, "delivered")
+                                                }}
+                                                className='btn btn-success text-white btn-sm '
+                                            >Deliver</button>
+                                        </span> :
+                                            <span className='text-info font-bold'>
+                                                Delivered
+                                            </span>
+                                    }
                                 </td>
                             </tr>
                             )

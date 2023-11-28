@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useBooking from '../../../../hooks/useBooking';
 import useAuth from '../../../../hooks/useAuth';
 import Sectiontitle from '../../../../Components/Title/Sectiontitle';
+import GiveReview from '../../../../Components/GiveReview/GiveReview';
+import { Rating } from '@smastrom/react-rating';
+
+import '@smastrom/react-rating/style.css'
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import auth from '../../../../Firebase/firebase.config';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 /**
  * Parcel Type,
 ● Requested Delivery Date,
@@ -33,14 +41,22 @@ button.(See Bonus Point 2 For The Additional Guideline)
  * **/
 const MyParcels = () => {
     const { user, loading } = useAuth()
-    const [bookings, isLoadingBooking] = useBooking()
+    const [bookings, isLoadingBooking, refetchBooking] = useBooking()
+    // const [rating, setRating] = useState(3);
+    const axiosSecure = useAxiosSecure()
     console.log(bookings);
     if (isLoadingBooking || loading) {
         return <h1>loading parcels ... </h1>
     }
 
     const handleCancel = (id) => {
-        console.log(id, "will be cancelled soon ");
+        axiosSecure.put(`/bookings/update/user/${id}`, { status: "cancelled" })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    toast.error("booking was cancelled ")
+                }
+            })
     }
     const handleUpdate = id => {
         console.log(id, `will be updated soon `)
@@ -48,11 +64,35 @@ const MyParcels = () => {
     const handlePay = id => {
         console.log(id, `will be paid soon `)
     }
-    const handleReview = id => {
-        console.log(id, `will be reviewed soon `)
+    const handleReview = (e, booking) => {
+        e.preventDefault()
+        // console.log(booking);
+        const form = e.target
+        const rating = form.rating.value ? parseInt(form.rating.value) : 3
+        const reviewText = form.reviewText.value
+
+
+        const info = {
+            user: booking.name,
+            userImage: auth?.currentUser?.photoURL,
+            reviewDate: new Date(),
+            rating,
+            reviewText,
+            bookingId: booking._id
+
+        }
+        console.log(info);
+        axiosSecure.put(`/review/${booking.deliverymanId}`, info)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    toast.success("review posted")
+                }
+            })
+
     }
 
-    console.log(bookings);
+    // console.log(bookings);
 
     return (
         <div className='w-full lg:px-4'>
@@ -84,22 +124,71 @@ const MyParcels = () => {
                                 {/* to be added by admin  */}
                                 <td>{booking?.deliverymanId}</td>
                                 <td>
-                                    <button onClick={() => {
-                                        handleCancel(booking._id)
-                                    }}
-                                        className={` btn ${booking?.status === "delivered" && "hidden"} btn-xs mx-2 btn-error`}>Cancel </button>
-                                    <button onClick={() => {
-                                        handleUpdate(booking._id)
-                                    }}
-                                        className={` btn ${booking?.status === "delivered" && "hidden"} btn-xs btn-warning`}
+                                    {
+                                        booking.status === "delivered" ?
+                                            <span className='flex gap-2 '>
+                                                <button onClick={() => {
+                                                    handlePay(booking._id)
+                                                }} className={`  btn btn-xs mx-2 btn-warning`}>Pay   </button>
 
-                                    >Update  </button>
-                                    <button onClick={() => {
-                                        handlePay(booking._id)
-                                    }} className={` hidden ${booking?.status === "delivered" && "flex"} btn btn-xs mx-2 btn-warning`}>Pay   </button>
-                                    <button onClick={() => {
-                                        handleReview(booking._id)
-                                    }} className={` hidden ${booking?.status === "delivered" && "flex"} btn  btn-xs  btn-warning`}>Review</button>
+                                                <span>
+                                                    {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                                                    <button className="btn btn-xs btn-info" onClick={() => document.getElementById('my_modal_5').showModal()}>Review </button>
+                                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                                        <div className="modal-box min-h-[400px] ">
+                                                            <div className='flex justify-center'>
+                                                                <form className='space-y-2 flex flex-col  justify-center' onSubmit={(e) => handleReview(e, booking)}
+                                                                >
+                                                                    <div className=" ">
+                                                                        <img src={auth?.currentUser?.photoURL} className="rounded-2xl w-8 " alt="" />
+                                                                        <p className='text-xl font-medium'>{auth?.currentUser?.displayName}</p>
+                                                                    </div>
+
+                                                                    <input type="text" name='reviewText' placeholder="Type your review here" className="input input-bordered input-info w-full max-w-xs" />
+                                                                    <select defaultValue={""} name='rating' className="select select-bordered w-full max-w-xs">
+                                                                        <option disabled value="" >Rating out of 5</option>
+                                                                        <option value={5}>5</option>
+                                                                        <option value={4}>4</option>
+                                                                        <option value={3}>3</option>
+                                                                        <option value={2}>2</option>
+                                                                        <option value={1}>1</option>
+
+                                                                    </select>
+                                                                    <button type='submit' className='btn btn-wide btn-info'>Submit Your Review</button>
+
+                                                                </form>
+                                                            </div>
+
+                                                            <div className="modal-action">
+                                                                <form method="dialog">
+                                                                    {/* if there is a button in form, it will close the modal */}
+                                                                    <button className="btn">Close</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </dialog>
+                                                </span>
+                                            </span> : <span>
+                                                {
+                                                    booking.status === "pending" ? <span>
+
+                                                        <button onClick={() => {
+                                                            handleCancel(booking._id)
+                                                        }}
+                                                            className={` btn btn-xs mx-2 btn-error`}>Cancel </button>
+                                                        <Link to={`/dashboard/updateBooking/${booking._id}`}
+
+                                                            className={` btn  btn-xs btn-warning`}
+
+                                                        >Update  </Link>
+                                                    </span> : "Parcel is On the way"
+                                                }
+
+
+                                            </span>
+                                    }
+
+
 
                                 </td>
 

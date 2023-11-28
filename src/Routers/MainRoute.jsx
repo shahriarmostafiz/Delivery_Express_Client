@@ -17,6 +17,7 @@ import AllDeliveryman from '../Pages/DashBoard/Admin/AllDeliveryMan/AllDeliverym
 import DeliveryRoute from './DeliveryRoute';
 import Mydeliveries from '../Pages/DashBoard/DeliverMan/MyDeliveries/Mydeliveries';
 import MyReviews from '../Pages/DashBoard/DeliverMan/MyReviews.jsx/MyReviews';
+import UpdateBooking from '../Pages/DashBoard/User/AddBooking/Updatebooking/UpdateBooking';
 
 const MainRoute = createBrowserRouter([
     {
@@ -52,6 +53,9 @@ const MainRoute = createBrowserRouter([
             }, {
                 path: "myparcels",
                 element: <MyParcels />
+            }, {
+                path: "updateBooking/:id",
+                element: <UpdateBooking />
             },
             // AdminRoutes
             {
