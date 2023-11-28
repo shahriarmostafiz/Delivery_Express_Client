@@ -6,7 +6,7 @@ const ReviewCard = ({ review }) => {
     const { user, userImage, rating, reviewText } = review
     return (
         <div>
-            <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-lg px-6 py-3">
+            <div className="relative flex w-full max-w-[26rem] h-60 flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-lg px-6 py-3">
                 <div className="relative flex items-center gap-4 pt-0 pb-8 mx-0 mt-4 overflow-hidden text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
                     <img
                         src={userImage}

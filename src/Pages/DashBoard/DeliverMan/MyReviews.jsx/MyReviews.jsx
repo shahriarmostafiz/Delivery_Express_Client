@@ -27,7 +27,7 @@ const MyReviews = () => {
     return (
         <div className='w-full'>
             <Sectiontitle heading={"Reviews"} subHeading={"What our users say"}></Sectiontitle>
-            <div className='w-full  flex justify-center '>
+            <div className='w-full  flex justify-center px-4 md:px-6 lg:px-8'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>
 
                     {

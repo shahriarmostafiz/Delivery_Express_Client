@@ -133,8 +133,8 @@ const MyParcels = () => {
 
                                                 <span>
                                                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                                                    <button className="btn btn-xs btn-info" onClick={() => document.getElementById('my_modal_5').showModal()}>Review </button>
-                                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                                    <button className="btn btn-xs btn-info" onClick={() => document.getElementById(idx).showModal()}>Review </button>
+                                                    <dialog id={idx} className="modal modal-bottom sm:modal-middle">
                                                         <div className="modal-box min-h-[400px] ">
                                                             <div className='flex justify-center'>
                                                                 <form className='space-y-2 flex flex-col  justify-center' onSubmit={(e) => handleReview(e, booking)}

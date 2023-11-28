@@ -1,6 +1,6 @@
 // import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FaHome, FaCalendar, FaCartPlus, FaWallet, FaCalendarCheck, FaUtensils, FaList, FaBook, FaUsers, } from "react-icons/fa"
+import { FaHome, FaCalendar, FaCartPlus, FaWallet, FaCalendarCheck, FaUtensils, FaList, FaBook, FaUsers, FaUser, } from "react-icons/fa"
 import { MdLogout, MdOutlineRateReview, MdOutlineRestaurantMenu, MdShoppingBag } from "react-icons/md";
 import { Helmet } from 'react-helmet-async';
 import AdminMenus from './AdminMenus';
@@ -12,13 +12,13 @@ import DeliveryMenus from './DeliveryMenus';
 import logo from "../../../assets/logo.png"
 
 const Dashbar = () => {
-    const { logout } = useAuth()
-    const handleLogout = () => {
-        logout()
-            .then(() => {
-                toast.error("Logged Out")
-            })
-    }
+    // const { logout } = useAuth()
+    // const handleLogout = () => {
+    //     logout()
+    //         .then(() => {
+    //             toast.error("Logged Out")
+    //         })
+    // }
     const [userRole] = useRole()
     // if (isRoleLoading) {
     //     return <h1>loading ...</h1>
@@ -30,6 +30,8 @@ const Dashbar = () => {
     // const isDeliveryMan = false
 
     const DashbarLinks = <>
+        <li><NavLink to={"/dashboard/userProfile"}><FaUser /> My Profile</NavLink></li>
+
 
         {
             isAdmin ?
@@ -43,7 +45,7 @@ const Dashbar = () => {
         }
         <div className="divider"></div>
         <li><NavLink to={"/"}><FaHome /> Home </NavLink></li>
-        <li><button onClick={handleLogout} className='btn-ghost'><MdLogout /> Logout  </button></li>
+        {/* <li><button onClick={handleLogout} className='btn-ghost'><MdLogout /> Logout  </button></li> */}
 
     </>
 

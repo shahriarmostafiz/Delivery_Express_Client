@@ -18,10 +18,9 @@ const Navbar = () => {
     }
     const navBarLinks = <>
         <li><NavLink to={"/"}>Home</NavLink> </li>
-        {
+        {/* {
             user &&
-            <li><NavLink to={"/dashboard"}>DashBoard</NavLink> </li>
-        }
+        } */}
     </>
     return (
         <div className='my-2'>
@@ -79,7 +78,8 @@ const Navbar = () => {
                                         <li className='hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit'>
                                             {auth.currentUser?.displayName}
                                         </li>
-                                        <li className='hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit'>Settings</li>
+                                        <li><NavLink to={"/dashboard"} className="hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit">DashBoard</NavLink> </li>
+
                                         <li className='hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit' onClick={handleLogout}>Logout</li>
                                     </ul>
                                 </div> :

@@ -36,7 +36,8 @@ const AllParcels = () => {
             // deliverymanId
             aprxDelivery,
         }
-        axiosSecure.put(`/bookings/update/${id}`, updateParceInfo)
+        // console.log(updateParceInfo);
+        axiosSecure.put(`/bookings/update/admin/${id}`, updateParceInfo)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
@@ -75,8 +76,8 @@ const AllParcels = () => {
                                     <td>{parcel?.status}</td>
                                     <td>
                                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                        <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>Manage </button>
-                                        <dialog id="my_modal_1" className="modal">
+                                        <button className="btn" onClick={() => document.getElementById(parcel._id).showModal()}>Manage </button>
+                                        <dialog id={parcel._id} className="modal">
                                             <div className="modal-box">
                                                 <form onSubmit={(e) => handleParcel(e, parcel._id)} className='flex flex-col items-center'>
                                                     {/* <select onChange={(e) => setDeliveryManId(e.target.value)} className="select select-info w-full max-w-xs"> */}
