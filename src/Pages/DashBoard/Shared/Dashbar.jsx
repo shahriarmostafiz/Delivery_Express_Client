@@ -1,12 +1,11 @@
 // import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FaHome, FaCalendar, FaCartPlus, FaWallet, FaCalendarCheck, FaUtensils, FaList, FaBook, FaUsers, FaUser, } from "react-icons/fa"
-import { MdLogout, MdOutlineRateReview, MdOutlineRestaurantMenu, MdShoppingBag } from "react-icons/md";
-import { Helmet } from 'react-helmet-async';
+import { FaHome, FaUser, } from "react-icons/fa"
+
 import AdminMenus from './AdminMenus';
 import UserMenus from './UserMenus';
-import useAuth from '../../../hooks/useAuth';
-import toast from 'react-hot-toast';
+
+
 import useRole from '../../../hooks/useRole';
 import DeliveryMenus from './DeliveryMenus';
 import logo from "../../../assets/logo.png"

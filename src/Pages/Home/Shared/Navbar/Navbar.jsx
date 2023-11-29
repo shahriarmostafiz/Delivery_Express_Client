@@ -3,9 +3,15 @@ import auth from '../../../../Firebase/firebase.config';
 import logo from "../../../../assets/logo.png"
 import { Link, NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import useRole from '../../../../hooks/useRole';
 
 const Navbar = () => {
-    const { user, logout } = useAuth()
+    const { user, logout, loading } = useAuth()
+    const [userRole, isRoleLoading] = useRole()
+    const isAdmin = userRole?.admin
+    // if (loading || isRoleLoading) {
+    //     return <h1>loading info ..</h1>
+    // }
     const handleLogout = () => {
         // console.log("trying to logout");
         logout()
@@ -23,7 +29,7 @@ const Navbar = () => {
         } */}
     </>
     return (
-        <div className='my-2'>
+        <div className=''>
 
             <div className='  w-full  md:flex md:justify-between  lg:justify-center'>
                 <div className='md:w-full lg:max-w-[1280px]'>
@@ -78,8 +84,14 @@ const Navbar = () => {
                                         <li className='hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit'>
                                             {auth.currentUser?.displayName}
                                         </li>
-                                        <li><NavLink to={"/dashboard"} className="hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit">DashBoard</NavLink> </li>
 
+                                        {
+                                            isAdmin ?
+                                                <li><Link to={"/dashboard/adminHome"} className="hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit">DashBoard</Link> </li>
+                                                :
+                                                <li><NavLink to={"/dashboard/userProfile"} className="hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit">DashBoard</NavLink> </li>
+
+                                        }
                                         <li className='hover:bg-black hover:bg-opacity-40 rounded px-4 w-fit' onClick={handleLogout}>Logout</li>
                                     </ul>
                                 </div> :

@@ -18,6 +18,8 @@ import DeliveryRoute from './DeliveryRoute';
 import Mydeliveries from '../Pages/DashBoard/DeliverMan/MyDeliveries/Mydeliveries';
 import MyReviews from '../Pages/DashBoard/DeliverMan/MyReviews.jsx/MyReviews';
 import UpdateBooking from '../Pages/DashBoard/User/AddBooking/Updatebooking/UpdateBooking';
+import Payment from '../Pages/DashBoard/User/Payment/Payment';
+import PaymentCompleted from '../Pages/DashBoard/User/Payment/PaymenCompleted';
 
 const MainRoute = createBrowserRouter([
     {
@@ -56,6 +58,12 @@ const MainRoute = createBrowserRouter([
             }, {
                 path: "updateBooking/:id",
                 element: <UpdateBooking />
+            }, {
+                path: "payment/:id",
+                element: <Payment></Payment>
+            }, {
+                path: "paymentCompleted",
+                element: <PaymentCompleted />
             },
             // AdminRoutes
             {

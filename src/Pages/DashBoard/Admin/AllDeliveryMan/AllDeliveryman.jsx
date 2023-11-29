@@ -1,6 +1,7 @@
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 import useDeliveryMan from '../../../../hooks/useDeliveryMan';
+import { averageReview } from '../../../../utilites/utility';
 
 const AllDeliveryman = () => {
     const [AllDeliveryMan, isAllDeliveryPending, refetchAllDeliveryMan] = useDeliveryMan()
@@ -30,7 +31,7 @@ const AllDeliveryman = () => {
                                 <td>{deliveryman.name}</td>
                                 <td>{deliveryman.phone}</td>
                                 <td>{deliveryman?.parcelDelivered ? deliveryman?.parcelDelivered : 0}</td>
-                                <td>{deliveryman?.averageReview ? deliveryman?.averageReview : "N/A"}</td>
+                                <td>{deliveryman?.reviews ? averageReview(deliveryman?.reviews) : "N/A"}</td>
                             </tr>)
                         }
 
