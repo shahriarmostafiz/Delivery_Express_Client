@@ -6,6 +6,7 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
 // todo here : add pk
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE)
 const Payment = () => {
@@ -20,7 +21,7 @@ const Payment = () => {
         }
     })
     if (isOurbookingPending) {
-        return <h1>loading data  </h1>
+        return <LoadingComponent></LoadingComponent>
     }
     console.log(ourbooking);
 

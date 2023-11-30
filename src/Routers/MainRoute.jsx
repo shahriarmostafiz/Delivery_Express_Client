@@ -20,11 +20,14 @@ import MyReviews from '../Pages/DashBoard/DeliverMan/MyReviews.jsx/MyReviews';
 import UpdateBooking from '../Pages/DashBoard/User/AddBooking/Updatebooking/UpdateBooking';
 import Payment from '../Pages/DashBoard/User/Payment/Payment';
 import PaymentCompleted from '../Pages/DashBoard/User/Payment/PaymenCompleted';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import SearchPage from '../Pages/SearchPage/SearchPage';
 
 const MainRoute = createBrowserRouter([
     {
         path: "/",
         element: <Mainlayout></Mainlayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -35,6 +38,9 @@ const MainRoute = createBrowserRouter([
             }, {
                 path: "/login",
                 element: <Login></Login>
+            }, {
+                path: "/search/:place",
+                element: <SearchPage></SearchPage>
             }
         ]
     }, {

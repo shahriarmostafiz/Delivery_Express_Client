@@ -79,14 +79,15 @@ const Register = () => {
                         Express | Signup
                     </title>
                 </Helmet>
-                <div className=" min-h-screen bg-base-200">
+                <div className=" min-h-screen bg-base-200 px-4">
                     {/* <div className="hero-content flex-col lg:flex-row-reverse"> */}
                     <div className="flex flex-col lg:flex-row items-center justify-center py-8">
-                        <div className="lg:w-1/2 text-center lg:text-left border-r-8">
-                            <img src={authImage} className="max-w-2xl" alt="" />
+                        <div className="lg:w-1/2 text-center lg:text-left ">
+                            <img src={authImage} className="max-w-sm md:max-w-xs lg:max-w-2xl" alt="" />
                         </div>
                         {/* <div className="card flex-1 w-full max-w-sm md:max-w-lg shadow-2xl bg-base-100"> */}
-                        <div className="lg:w-1/2  card  border-2 w-full max-w-lg h-fit  border-blue-500 shadow-2xl">
+                        <div className="lg:w-1/2  card  border-2 w-full max-w-lg h-fit  border-info shadow-2xl">
+                            <h1 className="text-center py-4 text-3xl font-bold text-info "> Signup Today </h1>
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
                                 className="p-4 px-8">
@@ -94,9 +95,10 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Name </span>
                                     </label>
-                                    <input type="text" placeholder="Name" className="input  input-bordered input-info " {...register("name", {
-                                        required: true
-                                    })} />
+                                    <input type="text" placeholder="Name" className="input  input-bordered input-info "
+                                        {...register("name", {
+                                            required: true
+                                        })} />
                                     {errors.name?.type === "required" && <span className="py-2 pl-4 text-red-500">Name is required</span>}
                                 </div>
                                 <div className="form-control">
@@ -159,7 +161,7 @@ const Register = () => {
                                     </div>
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Register</button>
+                                    <button className="btn btn-info text-white">Register</button>
                                 </div>
                             </form>
                             <SocialLogin text={"SignUp"}></SocialLogin>

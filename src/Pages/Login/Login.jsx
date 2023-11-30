@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 const Login = () => {
     const { login } = useAuth()
     const location = useLocation()
@@ -33,12 +34,18 @@ const Login = () => {
 
     return (
         <>
+            <Helmet>
+                <title>
+                    Express | Login
+                </title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col md:flex-row-reverse ">
                     <div className="text-center lg:text-left">
-                        <img src={loginphoto} alt="login.png" className="max-w-3xl" />
+                        <img src={loginphoto} alt="login.png" className="max-w-sm md:max-w-xs  lg:max-w-2xl" />
                     </div>
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <h1 className="text-center py-4 text-info text-2xl font-bold">Login</h1>
                         <form className="card-body" onSubmit={handleLogin}>
                             <div className="form-control">
                                 <label className="label">
@@ -59,11 +66,11 @@ const Login = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                                <button type="submit" className="btn btn-primary">Login</button>
+                                <button type="submit" className="btn btn-info text-white">Login</button>
                             </div>
                         </form>
                         <SocialLogin text={"Login"}></SocialLogin>
-                        <p className="text-center pb-2">Don have an account? <Link to={"/register"} className='text-blue-600 font-medium'>Sign up</Link> </p>
+                        <p className="text-center pb-4">Don have an account? <Link to={"/register"} className='text-info font-medium'>Sign up</Link> </p>
 
                     </div>
                 </div>

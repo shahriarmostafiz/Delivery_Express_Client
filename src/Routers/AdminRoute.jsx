@@ -3,13 +3,14 @@
 import useAuth from '../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import useRole from '../hooks/useRole';
+import LoadingComponent from '../Components/LoadingComponent/LoadingComponent';
 
 const AdminRoute = ({ children }) => {
     const [userRole, isRoleLoading] = useRole()
     const isAdmin = userRole.admin
     const { loading } = useAuth()
     if (loading || isRoleLoading) {
-        return <h1>loading admin ....</h1>
+        return <LoadingComponent></LoadingComponent>
     }
     if (isAdmin) {
         return children

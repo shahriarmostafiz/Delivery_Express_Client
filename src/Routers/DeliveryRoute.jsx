@@ -2,13 +2,14 @@
 import useRole from '../hooks/useRole';
 import useAuth from '../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
+import LoadingComponent from '../Components/LoadingComponent/LoadingComponent';
 
 const DeliveryRoute = ({ children }) => {
     const [userRole, isRoleLoading] = useRole()
     const { loading } = useAuth()
     const isDeliveryMan = userRole.deliveryman
     if (loading, isRoleLoading) {
-        return <h1>loading delivery man ....</h1>
+        return <LoadingComponent></LoadingComponent>
     }
     if (isDeliveryMan) {
         return children

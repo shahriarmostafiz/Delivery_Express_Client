@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import LoadingComponent from '../../../../../Components/LoadingComponent/LoadingComponent';
 
 const UpdateBooking = () => {
     const { id } = useParams()
@@ -18,7 +19,7 @@ const UpdateBooking = () => {
     const [price, setPrice] = useState(ourbooking?.price || 0)
 
     if (isOurbookingPending) {
-        return <h1>booking info loading... </h1>
+        return <LoadingComponent></LoadingComponent>
     }
 
     console.log(ourbooking);

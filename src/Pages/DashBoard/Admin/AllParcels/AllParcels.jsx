@@ -4,6 +4,9 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useDeliveryMan from '../../../../hooks/useDeliveryMan';
 import useBooking from '../../../../hooks/useBooking';
 import toast from 'react-hot-toast';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
+import Footer from '../../../Home/Footer/Footer';
+import DashboardFooter from '../../../../Components/DashBoardFoodter/DashboardFooter';
 
 const AllParcels = () => {
     const axiosSecure = useAxiosSecure()
@@ -20,9 +23,10 @@ const AllParcels = () => {
     const [bookings, isLoadingBooking, refetchBooking] = useBooking()
 
     if (isLoadingBooking || isAllDeliveryPending) {
-        return <h1>All parcels are loading..</h1>
+        return <LoadingComponent />
     }
     console.log(bookings);
+
 
     const handleParcel = (e, id) => {
         e.preventDefault()
@@ -47,8 +51,10 @@ const AllParcels = () => {
             })
     }
     return (
-        <div className='w-full'>
+        <div className='max-w-sm md:max-w-xl lg:max-w-6xl lg:w-full  px-2'>
+
             <div className="overflow-x-auto">
+
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -118,6 +124,7 @@ const AllParcels = () => {
                     </tbody>
                 </table>
             </div>
+            <DashboardFooter></DashboardFooter>
         </div>
     );
 };

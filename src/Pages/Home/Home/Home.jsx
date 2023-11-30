@@ -6,6 +6,7 @@ import OurFeatures from '../OurFeatures/OurFeatures';
 import Stats from '../Stats/Stats';
 import TopFive from '../TopFive/TopFive';
 import Footer from '../Footer/Footer';
+import AboutUs from '../AboutUs/About';
 
 const Home = () => {
     const { user } = useAuth()
@@ -14,6 +15,7 @@ const Home = () => {
             <Navbar></Navbar>
             <Banner></Banner>
             <OurFeatures></OurFeatures>
+            <AboutUs></AboutUs>
             <Stats></Stats>
             <TopFive></TopFive>
             {/* home of {user} */}

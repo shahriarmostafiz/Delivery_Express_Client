@@ -3,13 +3,14 @@ import React from 'react';
 import useUserInfo from '../../../../hooks/useUserInfo';
 import ReviewCard from './ReviewCard';
 import Sectiontitle from '../../../../Components/Title/Sectiontitle';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
 
 const MyReviews = () => {
     const [userInfo, isUserInfoLoading, reloadUserInfo] = useUserInfo()
     // const reviews = userInfo?.reviews 
     if (isUserInfoLoading) {
         return (
-            <h1>loading reviews </h1>
+            <LoadingComponent />
         )
     }
     // let reviews = []

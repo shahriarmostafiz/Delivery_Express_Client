@@ -1,3 +1,5 @@
+import DashboardFooter from '../../../../Components/DashBoardFoodter/DashboardFooter';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 import useDeliveryMan from '../../../../hooks/useDeliveryMan';
@@ -6,7 +8,7 @@ import { averageReview } from '../../../../utilites/utility';
 const AllDeliveryman = () => {
     const [AllDeliveryMan, isAllDeliveryPending, refetchAllDeliveryMan] = useDeliveryMan()
     if (isAllDeliveryPending) {
-        return <h1>loading all deliveryMan </h1>
+        return <LoadingComponent />
     }
     console.log(AllDeliveryMan);
     return (
@@ -38,6 +40,7 @@ const AllDeliveryman = () => {
                     </tbody>
                 </table>
             </div>
+            <DashboardFooter></DashboardFooter>
         </div>
     );
 };

@@ -6,6 +6,7 @@ import pin from "../../../../../public/pin.png"
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import useUserInfo from '../../../../hooks/useUserInfo';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
 
 
 
@@ -14,7 +15,7 @@ const Mydeliveries = () => {
     const [userInfo, isUserInfoLoading, reloadUserInfo] = useUserInfo()
     const axiosSecure = useAxiosSecure()
     if (isLoadingBooking || isUserInfoLoading) {
-        return <h1>loading all data  for deliveryman </h1>
+        return <LoadingComponent />
     }
     console.log(userInfo);
 
@@ -58,9 +59,9 @@ const Mydeliveries = () => {
 
     }
     return (
-        <div className='w-full px-2'>
-            <div className="overflow-x-auto w-full">
-                <table className="table">
+        <div className='max-w-sm md:max-w-xl lg:max-w-6xl lg:w-full  px-2'>
+            <div className="overflow-x-auto ">
+                <table className="table table-auto">
                     {/* head */}
                     <thead>
                         <tr>

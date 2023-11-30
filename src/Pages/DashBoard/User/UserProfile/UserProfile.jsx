@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
 const imageKey = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const imageApi = `https://api.imgbb.com/1/upload?key=${imageKey}`
 
@@ -22,7 +23,7 @@ const UserProfile = () => {
     } = useForm()
 
     if (isUserInfoLoading || loading) {
-        return <h1>loading user info .. </h1>
+        return <LoadingComponent></LoadingComponent>
     }
     const { _id, name, role, image, email, phone } = userInfo
 
@@ -61,23 +62,13 @@ const UserProfile = () => {
     // todo add a loading spinner 
 
     console.log(userInfo);
-    // todo 
-    // user info ke refetch korbo jkhn role change hobe
-    /**
-     * "_id": "6561b62ad37fab26e8d03e2d",
-    "name": "shahriar",
-    "email": "mostafizshahriar19@gmail.com",
-    "role": "user",
-    "image": "https://i.ibb.co/yfRrkwy/user11.jpg",
-    "__v": 0,
-    "phone": "12345678"
-     * **/
+
 
 
 
 
     return (
-        <div className='lg:px-8 py-6 flex  justify-between w-full bg-blue-50'>
+        <div className='lg:px-8 py-6 flex flex-col-reverse md:flex-row min-h-screen  justify-between w-full bg-blue-50'>
 
             {/* info here  */}
             <div className='flex-1 w-full'>
@@ -123,16 +114,16 @@ const UserProfile = () => {
                 </div>
             </div>
             {/* image here  */}
-            <div className=' flex flex-col  space-y-5'>
+            <div className=' flex flex-col items-center md:items-start px-4  space-y-5'>
                 <img src={image} className='w-64 rounded-xl' alt="" />
 
-                <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-4 '>
+                <form onSubmit={handleSubmit(onSubmit)} className='w-fit md:w-full text-center md:text-start space-y-4 '>
                     <input
                         {...register("image", { required: true })}
                         type="file" id=""
                         className="file-input file-input-bordered file-input-info w-full max-w-xs" />
 
-                    <button type='submit' className='btn btn-info'>UpDate Profile Picture </button>
+                    <button type='submit' className='btn btn-info'>Update Profile Picture </button>
                 </form>
 
             </div>

@@ -4,6 +4,7 @@ import Sectiontitle from '../../../../Components/Title/Sectiontitle';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import useUserInfo from '../../../../hooks/useUserInfo';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
 /** form fileds 
  * Name(Auto filled from the logged in user, read-only)x
 ● Email(Auto filled from the logged in user, read-only)x
@@ -30,7 +31,7 @@ const AddBooking = () => {
     const { user } = useAuth()
     const [userInfo, isUserInfoLoading, reloadUserInfo] = useUserInfo()
     if (isUserInfoLoading) {
-        return <h1>user info is loading for add booking </h1>
+        return <LoadingComponent />
     }
     console.log("userinfo", userInfo);
     // userInfo.bookingCount
@@ -76,7 +77,7 @@ const AddBooking = () => {
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
-                    axiosSecure.put(`/users/update/${userInfo._id}`, { bookingCount: userInfo?.bookingCount + 1 })
+                    axiosSecure.put(`/users/update/${userInfo._id}`, { bookingCount: parseInt(userInfo?.bookingCount) + 1 })
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
                                 toast.success("Parcel Booked")

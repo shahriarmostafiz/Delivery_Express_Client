@@ -3,6 +3,8 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useStatData from '../../../../hooks/useStats';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
+import DashboardFooter from '../../../../Components/DashBoardFoodter/DashboardFooter';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
@@ -19,8 +21,8 @@ const AllUsers = () => {
         }
     })
 
-    if (isStatPending) {
-        return <h1>loading user stats  ... </h1>
+    if (isStatPending || isAllUserLoading) {
+        return <LoadingComponent />
     }
     const count = statsData?.userTotal
     console.log(count);
@@ -83,11 +85,11 @@ const AllUsers = () => {
     phone
      * **/
     return (
-        <div className='w-full'>
+        <div className='max-w-sm md:max-w-xl lg:max-w-6xl lg:w-full '>
             {/* table here  */}
             <div>
                 <div className="overflow-x-auto">
-                    <table className="table">
+                    <table className="table table-auto">
                         {/* head */}
                         <thead>
                             <tr>
@@ -144,6 +146,7 @@ const AllUsers = () => {
                 }
 
             </div>
+            <DashboardFooter></DashboardFooter>
         </div>
     );
 };

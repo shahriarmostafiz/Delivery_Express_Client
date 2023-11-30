@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import Sectiontitle from '../../../Components/Title/Sectiontitle';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import TopCard from './topCard';
+import LoadingComponent from '../../../Components/LoadingComponent/LoadingComponent';
 
 const TopFive = () => {
     const axiosPublic = useAxiosPublic()
@@ -14,7 +15,7 @@ const TopFive = () => {
         }
     })
     if (isPending) {
-        return <h1>loading top 5..</h1>
+        return <LoadingComponent></LoadingComponent>
     }
     console.log(topMan);
 

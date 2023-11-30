@@ -11,13 +11,16 @@ import auth from '../../../../Firebase/firebase.config';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import LoadingComponent from '../../../../Components/LoadingComponent/LoadingComponent';
+import DashboardFooter from '../../../../Components/DashBoardFoodter/DashboardFooter';
 
 const MyParcels = () => {
     const { user, loading } = useAuth()
-    // const [myFilter, setFilter] = useState("")
+    const [myFilter, setFilter] = useState("All")
     // console.log(myFilter);
 
     const [bookings, isLoadingBooking, refetchBooking] = useBooking()
+
     // const { data: bookings, isPending: isLoadingBooking, refetch: refetchBooking } = useQuery({
     //     queryKey: ["Userbookings"],
     //     queryFn: async () => {
@@ -36,31 +39,15 @@ const MyParcels = () => {
     // }
     // const [myBookings, setMyBooking] = useState([])
     const axiosSecure = useAxiosSecure()
-    console.log(bookings);
+
     if (isLoadingBooking || loading) {
-        return <h1>loading parcels ... </h1>
+        return <LoadingComponent />
     }
     // // let myBookings = []
+    console.log(bookings);
 
 
-    // if (myFilter === "all") {
 
-    //     setMyBooking(bookings)
-
-    // }
-    // else if (myFilter === "on the way") {
-    //     const result = bookings.filter(booking => booking.status === "on the way")
-    //     setMyBooking(result)
-    // }
-    // else if (myFilter === "delivered") {
-    //     const result = bookings.filter(booking => booking.status === "delivered")
-    //     setMyBooking(result)
-    // }
-    // else if (myFilter === "pending") {
-    //     const result = bookings.filter(booking => booking.status === "pending")
-    //     setMyBooking(result)
-
-    // }
 
     // else if (myFilter === "cancelled") {
     //     const result = bookings.filter(booking => booking.status === "cancelled")
@@ -111,18 +98,21 @@ const MyParcels = () => {
             })
 
     }
-
+    const filteredBooking = myFilter === "All" ? bookings : bookings.filter(data => data.status === myFilter)
+    console.log(filteredBooking);
     // console.log(bookings);
 
     return (
         <div className='w-full lg:px-4'>
             <Sectiontitle heading={"My Parcels"} ></Sectiontitle>
             <div className="overflow-x-auto w-full">
-                {/* <div className='flex gap-4'>
+                <div className='flex gap-4 items-center'>
                     <label>Filter by:  </label>
-                    <select value={myFilter} onChange={handleFilter}>
+                    <select
+                        className="select select-info w-full max-w-xs"
+                        value={myFilter} onChange={(e) => setFilter(e.target.value)}>
                         <option value="">-select--</option>
-                        <option value="all">ALL</option>
+                        <option value="All">All</option>
                         <option value="on the way">On the Way</option>
                         <option value="pending">Pending</option>
                         <option value="delivered">Delivered</option>
@@ -132,7 +122,7 @@ const MyParcels = () => {
 
 
                     </select>
-                </div> */}
+                </div>
                 <table className="table  w-full">
                     {/* head */}
                     <thead>
@@ -149,18 +139,18 @@ const MyParcels = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings?.map((booking, idx) => <tr key={booking._id}>
+                            filteredBooking?.map((booking, idx) => <tr key={booking?._id}>
                                 <th>{idx + 1}</th>
-                                <td> {booking.type}</td>
-                                <td> {booking.bookingDate}</td>
-                                <td>{booking.requestedDate}</td>
+                                <td> {booking?.type}</td>
+                                <td> {booking?.bookingDate}</td>
+                                <td>{booking?.requestedDate}</td>
                                 <td>{booking?.aprxDelivery ? booking.aprxDelivery : "N/A"}</td>
-                                <td>{booking.status}</td>
+                                <td>{booking?.status}</td>
                                 {/* to be added by admin  */}
                                 <td>{booking?.deliverymanId}</td>
                                 <td>
                                     {
-                                        booking.status === "delivered" ?
+                                        booking?.status === "delivered" ?
                                             <span className='flex gap-2 '>
                                                 <Link to={`/dashboard/payment/${booking._id}`}
                                                     className={`  btn btn-xs mx-2 btn-warning`}>Pay   </Link>
@@ -204,13 +194,13 @@ const MyParcels = () => {
                                                 </span>
                                             </span> : <span>
                                                 {
-                                                    booking.status === "pending" ? <span>
+                                                    booking?.status === "pending" ? <span>
 
                                                         <button onClick={() => {
-                                                            handleCancel(booking._id)
+                                                            handleCancel(booking?._id)
                                                         }}
                                                             className={` btn btn-xs mx-2 btn-error`}>Cancel </button>
-                                                        <Link to={`/dashboard/updateBooking/${booking._id}`}
+                                                        <Link to={`/dashboard/updateBooking/${booking?._id}`}
 
                                                             className={` btn  btn-xs btn-warning`}
 
@@ -235,6 +225,7 @@ const MyParcels = () => {
                     </tbody>
                 </table>
             </div>
+            <DashboardFooter></DashboardFooter>
         </div>
     );
 };

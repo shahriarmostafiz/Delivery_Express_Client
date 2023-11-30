@@ -3,6 +3,8 @@ import auth from '../../../../Firebase/firebase.config';
 import logo from "../../../../assets/logo.png"
 import { Link, NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { IoNotificationsOutline } from "react-icons/io5";
+
 import useRole from '../../../../hooks/useRole';
 
 const Navbar = () => {
@@ -23,7 +25,7 @@ const Navbar = () => {
             })
     }
     const navBarLinks = <>
-        <li><NavLink to={"/"}>Home</NavLink> </li>
+        <li><Link to={"/"}>Home</Link> </li>
         {/* {
             user &&
         } */}
@@ -73,6 +75,17 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <div className="navbar-end">
+                            <div className="indicator">
+
+
+                                {/* <span className="indicator-item badge badge-info badge-xs "></span> */}
+                                <button className="btn btn-ghost  text-2xl">
+                                    <span>
+                                        <IoNotificationsOutline />
+
+                                    </span>
+                                </button>
+                            </div>
                             {
                                 user ? <div className="dropdown dropdown-end">
                                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
