@@ -93,8 +93,8 @@ const AddBooking = () => {
     }
     console.log(price);
     return (
-        <div className='w-full'>
-            <Sectiontitle heading={"Effortless Parcel Booking"} subHeading={"Simplified Steps for Secure Shipments"}></Sectiontitle>
+        <div className='w-full bg-gradient-to-br from-blue-500 via-teal-400 to-red-300'>
+            <Sectiontitle dashboard={true} heading={"Effortless Parcel Booking"} subHeading={"Simplified Steps for Secure Shipments"}></Sectiontitle>
             <div className='px-6 w-full'>
                 <form onSubmit={handleBooking}>
                     {/* name  */}

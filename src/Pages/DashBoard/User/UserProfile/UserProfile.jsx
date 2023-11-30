@@ -63,18 +63,14 @@ const UserProfile = () => {
 
     console.log(userInfo);
 
-
-
-
-
     return (
-        <div className='lg:px-8 py-6 flex flex-col-reverse md:flex-row min-h-screen  justify-between w-full bg-blue-50'>
+        <div className='lg:px-8 py-6 flex flex-col-reverse md:flex-row md:items-center min-h-screen  justify-between w-full bg-gradient-to-br from-blue-500 via-teal-400 to-red-300  text-white '>
 
             {/* info here  */}
-            <div className='flex-1 w-full'>
+            <div className='flex-1 w-full px-5'>
                 {/* name Role */}
 
-                <h1 className='text-2xl font-medium underline '> About </h1>
+                <h1 className='text-4xl font-medium underline py-5 text-center md:text-start'> About </h1>
                 <div className="flex w-full mb-5">
                     {/* name  */}
                     <div className='w-full '>
@@ -94,7 +90,7 @@ const UserProfile = () => {
                 </div>
                 {/* email phone */}
 
-                <h1 className='text-xl font-medium underline'> Contact  </h1>
+                <h1 className='text-4xl font-medium underline py-5 '> Contact  </h1>
                 <div className="flex w-full">
                     {/* email */}
                     <div className='w-full'>
@@ -115,7 +111,7 @@ const UserProfile = () => {
             </div>
             {/* image here  */}
             <div className=' flex flex-col items-center md:items-start px-4  space-y-5'>
-                <img src={image} className='w-64 rounded-xl' alt="" />
+                <img src={image} className='w-64 rounded-xl shadow-xl' alt="" />
 
                 <form onSubmit={handleSubmit(onSubmit)} className='w-fit md:w-full text-center md:text-start space-y-4 '>
                     <input
@@ -123,7 +119,7 @@ const UserProfile = () => {
                         type="file" id=""
                         className="file-input file-input-bordered file-input-info w-full max-w-xs" />
 
-                    <button type='submit' className='btn btn-info'>Update Profile Picture </button>
+                    <button type='submit' className='btn btn-info text-white'>Update Profile Picture </button>
                 </form>
 
             </div>

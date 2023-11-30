@@ -103,13 +103,13 @@ const MyParcels = () => {
     // console.log(bookings);
 
     return (
-        <div className='w-full lg:px-4'>
-            <Sectiontitle heading={"My Parcels"} ></Sectiontitle>
+        <div className='w-full lg:px-4 bg-gradient-to-br from-blue-500 via-teal-400 to-red-300'>
+            <Sectiontitle heading={"My Parcels"} dashboard={true} ></Sectiontitle>
             <div className="overflow-x-auto w-full">
-                <div className='flex gap-4 items-center'>
+                <div className='flex gap-4 items-center ml-4'>
                     <label>Filter by:  </label>
                     <select
-                        className="select select-info w-full max-w-xs"
+                        className="select select-info bg-transparent w-full max-w-xs"
                         value={myFilter} onChange={(e) => setFilter(e.target.value)}>
                         <option value="">-select--</option>
                         <option value="All">All</option>

@@ -50,14 +50,14 @@ const Dashbar = () => {
 
     return (
         <div>
-            <div className='md:hidden flex flex-row-reverse justify-between'>
+            <div className='md:hidden flex flex-row-reverse justify-between bg-gradient-to-tr from-blue-500 via-teal-400 to-red-300'>
                 <div>
                     <Link to={"/"} className="btn btn-ghost text-xl h-fit">
                         <img src={logo} className='h-fit w-10 lg:w-14'></img>
                     </Link>
                 </div>
                 <div>
-                    <Link to={"/dashboard"} className='btn btn-ghost text-xl text-blue-400 '>
+                    <Link to={"/dashboard"} className='btn btn-ghost text-xl text-white '>
                         DashBoard
                     </Link>
                 </div>
@@ -80,7 +80,7 @@ const Dashbar = () => {
                 </div>
             </div>
 
-            <div className=" hidden md:block h-full  w-[250px] bg-blue-100 min-h-screen px-4 py-12">
+            <div className=" hidden md:block h-full  w-[250px] bg-gradient-to-tr from-red-300 via-teal-400 to-blue-500 min-h-screen px-4 py-12">
                 <ul className='menu text-lg text-black '>
                     {DashbarLinks}
                     {/* {
