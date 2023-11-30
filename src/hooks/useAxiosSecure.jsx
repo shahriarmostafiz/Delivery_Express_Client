@@ -3,8 +3,7 @@ import useAuth from './useAuth';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 const instance = axios.create({
-    baseURL: "http://localhost:5000"
-    // baseURL: "https://dex-server-1.vercel.app"
+    baseURL: "https://dex-server-1.vercel.app"
 
 })
 
