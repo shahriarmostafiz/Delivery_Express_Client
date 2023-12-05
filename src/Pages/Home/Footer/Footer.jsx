@@ -3,7 +3,7 @@ import logo from "../../../../public/logo.png"
 const Footer = () => {
     return (
         <div className='mt-8'>
-            <footer className="footer group footer-center p-10 bg-gradient-to-l from-red-100 to-blue-500  text-white">
+            <footer className="footer group footer-center p-10 bg-gradient-to-br from-blue-500 via-teal-400 to-red-300  text-white">
                 <aside>
                     <img src={logo} className='hover:scale-110 transform ease-in-out duration-500  rounded-lg   ' width="120px" alt="" />
                     <h1
