@@ -1,4 +1,5 @@
 # Delivery Express
+A parcel management app created with MERN Stack. 
 
 # Features
 
