@@ -2,6 +2,7 @@
 import Sectiontitle from "../../../Components/Title/Sectiontitle";
 import team from "../../../assets/team.jpg"
 import cardboard from "../../../assets/cardboard.jpg"
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 const AboutUs = () => {
     return (
@@ -15,7 +16,9 @@ const AboutUs = () => {
                 <div className="w-full p-4 md:w-2/5 ">
                     <h1>
                         Founded in 2023, Delivery Express is your premier destination for swift and reliable package delivery services. Committed to redefining the delivery experience, we leverage cutting-edge technology and maintain a customer-centric approach. Our dedicated team ensures timely and secure deliveries, whether local or nationwide. At Delivery Express, environmental sustainability is a priority, reflected in our fuel-efficient delivery fleet and ongoing efforts to adopt eco-friendly packaging solutions. Choose Delivery Express for a seamless, efficient, and environmentally responsible delivery experience that exceeds expectations with every package.
+                        Learn More about the owner below
                     </h1>
+                    <a href="https://shahriarmostafizportfolio.web.app/" target="_blank" className="btn btn-info my-2 text-white"> Owner Profile <FaArrowUpRightFromSquare />  </a>
                 </div>
             </div>
         </div>

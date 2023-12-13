@@ -8,6 +8,7 @@
 - JWT for security
 - Review System for registered Users
 - Dynamic Maps with Map box
+- Owner Portfolio Linked
 
 # Links
 
